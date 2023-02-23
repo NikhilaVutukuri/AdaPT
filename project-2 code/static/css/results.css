@@ -1,0 +1,34 @@
+table{
+    text-align: left;
+    border: none;
+}
+
+th, td{
+    width: 100px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-left: 10px;
+    margin: 0px;
+    vertical-align: middle;
+}
+
+.table-button{
+    font-size: 14px;
+}
+
+.all-results tr:nth-child(even) td{
+    background-color: rgb(82, 82, 82);
+}
+
+.main-results tr:nth-child(even) td{
+    background-color: rgb(82, 82, 82);
+}
+th{
+    padding-bottom: 3px;
+}
+
+.table-heading{
+    font-size: 20px;
+}
+
+

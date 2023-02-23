@@ -1,0 +1,118 @@
+body{
+    margin: 0px;
+    padding: 0px;
+    height: 100vh;
+    text-align: center;
+    font-family: 'Radio Canada', sans-serif;
+    background-color: rgb(53, 55, 55);
+    color: aliceblue;
+    
+}
+
+header>h1{
+    font-size: 90px;
+    background: -webkit-linear-gradient(rgb(42, 176, 213), rgb(18, 213, 210));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 40px;
+}
+
+.no-box-button, .heading{
+    background-color: rgb(53, 55, 55);
+    font-family: 'Radio Canada', sans-serif;
+    border: none;
+    font-size: 20px;
+    background: -webkit-linear-gradient(rgb(42, 176, 213), rgb(18, 213, 210));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-top: 20px;
+    margin-bottom: 0px;
+}
+
+.box-button{
+    background-image: linear-gradient(rgb(42, 176, 213), rgb(18, 213, 210));
+    border: none;
+    padding: 0.7%;
+    font-family: 'Radio Canada', sans-serif;
+    border-radius: 3px;
+}
+
+svg{
+    margin-top: 0px;
+}
+
+input, select, textarea{
+    background-color: rgb(82, 82, 82);
+    border: none;
+    height: 27px;
+    width: 200px;
+    color: aliceblue;
+    font-family: 'Radio Canada', sans-serif;
+    text-align: center;
+}
+form{
+    line-height: 57px;
+}
+
+textarea{
+    text-align: left;
+    background-color: rgb(82, 82, 82);
+    border: none;
+    color: aliceblue;
+    font-family: 'Radio Canada', sans-serif;
+    height: 50px;
+    width: 200px;
+}
+
+
+#inputs{
+    height: 100vh;
+}
+
+.spinner {
+    animation: rotator 1.4s linear infinite;
+}
+@keyframes rotator {
+    0% {
+        transform: rotate(0deg);
+   }
+    100% {
+        transform: rotate(270deg);
+   }
+}
+.path {
+    stroke-dasharray: 187;
+    stroke-dashoffset: 0;
+    transform-origin: center;
+    animation: dash 1.4s ease-in-out infinite, colors 5.6s ease-in-out infinite;
+}
+@keyframes colors {
+    0% {
+        stroke: rgb(6, 151, 190) ;
+   }
+    25% {
+        stroke: rgb(64, 174, 205);
+   }
+    50% {
+        stroke: rgb(18, 213, 210);
+   }
+    75% {
+        stroke: rgb(42, 174, 213);
+   }
+    100% {
+        stroke: rgb(6, 151, 190);
+   }
+}
+@keyframes dash {
+    0% {
+        stroke-dashoffset: 187;
+   }
+    50% {
+        stroke-dashoffset: 46.75;
+        transform: rotate(135deg);
+   }
+    100% {
+        stroke-dashoffset: 187;
+        transform: rotate(450deg);
+   }
+}

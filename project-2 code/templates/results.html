@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AdaPT - Results</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Radio+Canada:wght@300;700&display=swap" rel="stylesheet">
+
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/styles.css') }}">
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/results.css') }}">
+</head>
+<body>
+    <header>  
+        <h1>AdaPT</h1>
+    </header>
+    <main>
+        <p class="table-heading">Your results are here!</p>
+        <center>
+            <div class="table dataset">
+                <table >
+                    {% for header in model_parameters.keys() %}
+                        {% if header== 'redundant_features' %}
+                            {% if model_parameters[header]|length >0 %}
+                                <tr>
+                                    <th rowspan="{{ model_parameters[header]|length +1 }}">
+                                        {{ header.replace('_', ' ').capitalize() }}
+                                    </th>
+                                </tr>  
+                                {% for i in model_parameters[header] %}
+                                    <tr>
+                                        <td>
+                                            {{ i }}
+                                        </td>
+                                    </tr>
+                                {% endfor %} 
+                            {% endif %}
+                        {% else %}
+                            <tr>
+                                <th>
+                                    {{ header.replace('_', ' ').capitalize() }}
+                                </th>
+                                <td>
+                                    {{ model_parameters[header] }}
+                                </td>
+                            </tr>
+                        {% endif %}
+                        
+                    {% endfor %}
+                </table>
+                <a href="/get-clean-data"><button class="no-box-button">Download clean dataset</button></a>
+            </div>
+        </center>
+        <br>
+        <center>
+            <div >
+                <p class="table-heading">The following model(s) works best for you!</p>
+                <br>
+                <table class="main-results table" cellspacing="0">
+                    <tr>
+                        <th>Model</th>
+
+                        {% for i in result[(result.keys()| list)[0]].keys() %}
+                            <th>{{ i.replace('_', ' ').capitalize() }}</th>
+                        {% endfor %}
+                        <th>Download</th>
+                    </tr>
+                    {% for i in result.keys() %}
+                        <tr>
+                            <td>{{ i }}</td>
+                            {% for j in result[i].values() %}
+                                <td>{{ (j|string).replace('_', ' ').capitalize() }}</td>
+                            {% endfor %}
+                            <td>
+                                <a href="/get-model/{{i}}"><button class="no-box-button table-button">Download model</button></a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </center>
+        <br>
+        <center>
+            <div>
+                <p class="table-heading">Other models created</p>
+                <br>
+                <table class="all-results table" cellspacing="0">
+                    <tr>
+                        <th>Model</th>
+                        {% for i in performance_report['model_1'].keys() %}
+                            <th>{{ i.replace('_', ' ').capitalize() }}</th>
+                        {% endfor %}
+                        <th>Download</th>
+                    </tr>
+                    {% for i in performance_report.keys() %}
+                        {% if 'model' in i %}
+                            {% if i not in result.keys() %}
+                            <tr>
+                                <td>{{ i }}</td>
+                                {% for j in performance_report[i].keys() %}
+                                    <td>{{ (performance_report[i][j]|string).replace('_', ' ').capitalize() }}</td>
+                                {% endfor %}
+                                <td>
+                                    <a href="/get-model/{{i}}"><button class="no-box-button table-button">Download model</button></a>
+                                </td>
+                            </tr>
+                            {% endif %}
+                        {% endif %}
+                    {% endfor %}
+                    
+                    
+                </table>
+            </div>
+        </center>
+        <br>
+        <a href="/home" ><button class="box-button arrow">Go back</button></a>      
+        <br>
+        <br>
+        <br>
+
+
+    </main>
+    <!-- <script src="{{url_for('static', filename='javascript/script.js')}}"></script> -->
+
+</body>
+</html>
